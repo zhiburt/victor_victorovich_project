@@ -1,35 +1,27 @@
 ﻿body {
-    padding-top: 50px;
-    padding-bottom: 20px;
+    background-color: rgb(43, 62, 80);
 }
 
 /* Wrapping element */
 /* Set some basic padding to keep content from hitting the edges */
-.body-content {
-    padding-left: 15px;
-    padding-right: 15px;
+.main {
+    margin-bottom: 60px;
+    margin-top: 60px;
+    background-color: steelblue;
 }
 
-/* Carousel */
-.carousel-caption p {
-    font-size: 20px;
-    line-height: 1.4;
-}
-
-/* Make .svg files in the carousel display properly in older browsers */
-.carousel-inner .item img[src$=".svg"] {
+.footer{
+    padding-top: 2rem;
+    bottom: 0;
     width: 100%;
+    background-color: rgb(32, 44, 49);
 }
 
-/* QR code generator */
-#qrCode {
-    margin: 15px;
+.index-jumbotron{
+    margin: 2rem;
 }
 
-/* Hide/rearrange for smaller screens */
-@media screen and (max-width: 767px) {
-    /* Hide captions */
-    .carousel-caption {
-        display: none;
-    }
+.index-picture{
+    padding: 4rem;
+    margin-bottom: 3rem;
 }
