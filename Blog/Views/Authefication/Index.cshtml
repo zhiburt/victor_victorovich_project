@@ -1,0 +1,350 @@
+@using Blog.ViewModel.Authefication;
+@{
+    ViewData["Title"] = "Index";
+    Layout = null;
+}
+
+@model RegisterViewModel
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Blog</title>
+
+    <environment include="Development">
+        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="~/css/site.css" />
+    </environment>
+    <environment exclude="Development">
+ 
+        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+               <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
+    </environment>
+</head>
+<body>
+
+<style>
+  		@@import url(https://fonts.googleapis.com/css?family=Varela);
+.login{
+
+}
+html {
+  height: 100%;
+}
+body {
+  font-family: 'Varela', sans-serif;
+  font-size: 14px;
+  line-height: 1.5;
+  color: #FAFFBD;
+  background-color : lightcyan;
+  min-height: 100%;
+  position: relative;
+  width:100%;
+	height:100%;
+	overflow:hidden;
+}
+label {
+  margin-bottom: 0;
+}
+
+a {
+  color: #e1e1e1;
+}
+
+a:focus,
+a:hover {
+  color: #008080;
+}
+
+.checkbox-inline+.checkbox-inline,
+.radio-inline+.radio-inline {
+  margin-top: 6px;
+}
+
+body.login {
+  background: rgba(255, 255, 255, 1);
+}
+
+.relative {
+  position: relative;
+}
+.switcher{
+  margin-bottom:70px;
+}
+ul.switcher li{
+	list-style-type: none;
+	width:50%;
+  position:absolute;
+  top:0;
+}
+.first{
+  left:0;
+}
+.second{
+  right:0;
+}
+.login-container-wrapper {
+  max-width: 400px;
+  margin: 2% auto 5%;
+  padding: 40px;
+  box-sizing: border-box;
+  background: rgba(57, 89, 116, 0.8);
+  position: relative;
+  box-shadow: 0px 30px 60px -5px #000;
+  background-image:url('http://www.planwallpaper.com/static/images/colorful-triangles-background_yB0qTG6.jpg');
+  background-size:cover;
+  background-blend-mode:saturation;
+}
+.login-container-wrapper .logo,
+.login-container-wrapper .welcome {
+  font-size: 16px;
+  letter-spacing: 1px;
+}
+.login-container-wrapper li {
+  text-align: center;
+  padding:0 15px;
+  background-color: #283443;
+  height:50px;
+  line-height:50px;
+  box-shadow: inset 0 -2px 0 0 #ccc;
+  cursor:pointer;
+}
+.login-container-wrapper li a{
+   color:#fff;
+}
+.login-container-wrapper li a:hover{
+  color:#ccc;
+  text-decoration:none;
+}
+
+.login-container-wrapper li a:active,
+.login-container-wrapper li a:focus{
+  color:#fff;
+  text-decoration:none;
+}
+.login-container-wrapper li.active{
+  background-color:transparent;
+  box-shadow:none;
+}
+.login-container-wrapper li.active a{
+  border-bottom:2px solid #fff;
+  padding-bottom:5px;
+}
+
+.login input:focus + .fa{
+  color:#25a08d;
+}
+.login-form .form-group {
+  margin-right: 0;
+  margin-left: 0;
+}
+
+.login-form i {
+  position: absolute;
+  top: 0;
+  left: 19px;
+  line-height:52px;
+  color: rgba(40, 52, 67, 1);
+  z-index:100;
+  font-size:16px;
+}
+
+.login-form .input-lg {
+  font-size: 16px;
+  height: 52px;
+  padding: 10px 25px;
+  border-radius: 0;
+}
+
+.login input[type="email"],
+.login input[type="password"],
+.login input:focus {
+  background-color: rgba(40, 52, 67, 0.75);
+  border: 0px solid #4a525f;
+  color: #eee;
+  border-left: 45px solid #93a5ab;
+  border-radius:40px;
+}
+
+.login input:focus {
+  border-left: 45px solid #eee;
+}
+
+input:-webkit-autofill,
+textarea:-webkit-autofill,
+select:-webkit-autofill {
+  background-color: rgba(40, 52, 67, 0.75)!important;
+  background-image: none;
+  color: rgb(0, 0, 0);
+  border-color: #FAFFBD;
+}
+
+.login .checkbox label,
+.login .checkbox a {
+  color: #ddd;
+  vertical-align: top;
+}
+input[type="checkbox"]:checked + label::before,
+.checkbox-success input[type="radio"]:checked + label::before {
+    background-color: #25a08d !important;
+}
+.btn-success {
+  background-color: #25a08d;
+  background-image: none;
+  padding: 8px 50px;
+  margin-top:20px;
+  border-radius: 40px;
+  border: 1px solid #25a08d;
+  -webkit-transition: all ease 0.8s;
+  -moz-transition: all ease 0.8s;
+  transition: all ease 0.8s;
+}
+
+.btn-success:focus,
+.btn-success:hover,
+.btn-success.active,
+.btn-success.active:hover,
+.btn-success:active:hover,
+.btn-success:active:focus,
+.btn-success:active {
+  background-color: #25a08d;
+  border-color: #25a08d;
+  box-shadow: 0px 5px 35px -5px #25a08d;
+  text-shadow:0 0 8px #fff;
+  color: #FFF;
+  outline:none;
+}
+
+.other-authefication{
+  margin: 2rem;
+}
+
+#blockquote-0-footer{
+  padding: 1rem;
+}
+
+#blockquote-0{
+  padding: 3rem;
+}
+</style>
+<div class=" container">
+  <div class=" row">
+    <div class=" col col-md-12">
+
+<div class="card-login">
+	<div class="container">
+		<div class="login-container-wrapper clearfix">
+			<ul class="switcher clearfix">
+				<li class="first logo active" data-tab="login">					
+						<a>Login</a>			
+				</li>
+				<li class="second logo" data-tab="sign_up">
+						<a>Sign Up</a>	
+				</li>
+			</ul>
+			<div class="tab-content">
+				<div class="tab-pane active" id="login">
+          @Html.Partial("_FormForget")
+				</div>
+				<div class="tab-pane" id="sign_up">
+					<form class="form-horizontal login-form"
+            asp-action="Register"
+            asp-controller="Authefication"
+            asp-route-returnurl="@ViewData["ReturnUrl"]"
+            method="POST">
+						<div class="form-group relative">
+							<input asp-for="UserName" class="form-control input-lg" id="login_username" placeholder="User Name" required="" type="username"/> <i class="fa fa-user"></i>
+              <span asp-validation-for="UserName" class=" text-danger"></span>
+            </div>
+						<div class="form-group relative">
+							<input asp-for="Email" class="form-control input-lg" id="login_username" placeholder="E-mail Address" required="" type="email"/> <i class="fa fa-user"></i>
+						  <span asp-validation-for="Email" class=" text-danger"></span>
+            </div>
+						<div class="form-group relative">
+							<input asp-for="Password" class="form-control input-lg" id="login_password" placeholder="Password" required="" type="password"/> <i class="fa fa-lock"></i>
+              <span asp-validation-for="Password" class=" text-danger"></span>
+            </div>
+						<div class="form-group relative">
+							<input class="form-control input-lg" id="login_password" placeholder="Repeat Password" required="" type="password" /> <i class="fa fa-lock"></i>
+            </div>  
+						<div class="form-group">
+							<button class="btn btn-success btn-lg btn-block" type="submit">Sign Up</button>
+            </div>
+						<div class="checkbox checkbox-success">
+							<input id="agree-terms" type="checkbox">
+              <label for="agree-terms"> Agree our terms</label>
+              <!-- <span asp-validation-for="" class=" text-danger"></span> -->
+            </div>
+						<hr>
+						<div class="text-center">
+							<label><a href="#">Already Member?</a></label>
+						</div>
+					</form>
+          <div class="other-authefication align-items-center text-center">
+            <div class="row">
+              <div class=" col col-sm-6">
+                <a class="btn btn-outline-primary">Twitter</a>
+              </div>
+
+              <div class=" col col-sm-6">
+                <a class="btn btn-outline-primary">Microsoft</a>
+              </div>
+            </div>
+          </div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+    </div>
+    <div class=" col col-md-12">
+      <blockquote id="blockquote-0" class="blockquote text-center">
+        <h1 class=" display-4 text-secondary">Thank <mark>You!</mark></h1>
+        <footer id="blockquote-0-footer" class="blockquote-footer text-secondary"><cite title="Source Title"></cite>Somepeople'll say it</footer>
+      </blockquote>
+    </div>
+  </div>
+</div>
+
+    <environment include="Development">
+        <script src="~/lib/jquery/dist/jquery.js"></script>
+        <script src="~/lib/jquery/dist/jquery.js"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+        <script src="~/js/site.js" asp-append-version="true"></script>
+    </environment>
+    <environment exclude="Development">
+        <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-2.2.0.min.js"
+                asp-fallback-src="~/lib/jquery/dist/jquery.min.js"
+                asp-fallback-test="window.jQuery"
+                crossorigin="anonymous"
+                integrity="sha384-K+ctZQ+LL8q6tP7I94W+qzQsfRV2a+AfHIi9k8z8l9ggpc8X+Ytst4yBo/hH+8Fk">
+        </script>
+        <script src="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/bootstrap.min.js"
+                asp-fallback-src="~/lib/bootstrap/dist/js/bootstrap.min.js"
+                asp-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal"
+                crossorigin="anonymous"
+                integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa">
+        </script>
+        <script src="~/js/site.min.js" asp-append-version="true"></script>
+    </environment>
+
+    <script>
+      $(document).ready(function(){
+	
+	$('ul.switcher li').click(function(){
+		var tab_id = $(this).attr('data-tab');
+
+		$('li').removeClass('active');
+    $('div.tab-pane').removeClass('active');
+
+		$(this).addClass('active');
+		$("#"+tab_id).addClass('active');
+	})
+
+})
+    </script>
+
+</body>
+</html>

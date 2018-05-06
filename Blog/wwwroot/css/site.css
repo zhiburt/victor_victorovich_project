@@ -2,6 +2,12 @@
     background-color: rgb(43, 62, 80);
 }
 
+
+/*topografia */
+html {
+    font-size: 1rem;
+  }
+ 
 /* Wrapping element */
 /* Set some basic padding to keep content from hitting the edges */
 .main {

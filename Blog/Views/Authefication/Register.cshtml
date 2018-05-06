@@ -1,0 +1,39 @@
+		@{
+            ViewData["Title"] = "Register";
+        }
+        @using Blog.ViewModel.Authefication;
+        @model RegisterViewModel
+
+        <form class="form-horizontal login-form"
+            asp-action="Register"
+            asp-controller="Authefication"
+            asp-route-returnurl="@ViewData["ReturnUrl"]"
+            method="POST">
+						<div class="form-group relative">
+							<input asp-for="UserName" class="form-control input-lg" id="login_username" placeholder="User Name" required="" type="username"/> <i class="fa fa-user"></i>
+              <span asp-validation-for="UserName" class=" text-danger"></span>
+            </div>
+						<div class="form-group relative">
+							<input asp-for="Email" class="form-control input-lg" id="login_username" placeholder="E-mail Address" required="" type="email"/> <i class="fa fa-user"></i>
+						  <span asp-validation-for="Email" class=" text-danger"></span>
+            </div>
+						<div class="form-group relative">
+							<input asp-for="Password" class="form-control input-lg" id="login_password" placeholder="Password" required="" type="password"/> <i class="fa fa-lock"></i>
+              <span asp-validation-for="Password" class=" text-danger"></span>
+            </div>
+						<div class="form-group relative">
+							<input class="form-control input-lg" id="login_password" placeholder="Repeat Password" required="" type="password" /> <i class="fa fa-lock"></i>
+            </div>  
+						<div class="form-group">
+							<button class="btn btn-success btn-lg btn-block" type="submit">Sign Up</button>
+            </div>
+						<div class="checkbox checkbox-success">
+							<input id="agree-terms" type="checkbox">
+              <label for="agree-terms"> Agree our terms</label>
+              <!-- <span asp-validation-for="" class=" text-danger"></span> -->
+            </div>
+						<hr>
+						<div class="text-center">
+							<label><a href="#">Already Member?</a></label>
+						</div>
+					</form>

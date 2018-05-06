@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -6,11 +7,12 @@
     <title>@ViewData["Title"] - Blog</title>
 
     <environment include="Development">
+        @RenderSection("Css", required: false)
         <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
         <link rel="stylesheet" href="~/css/site.css" />
     </environment>
     <environment exclude="Development">
- 
+        
         <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
                <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
     </environment>
@@ -47,6 +49,10 @@
                         <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
                     </form>
                 </div>
+                <div>
+                    @Html.Partial("_UserSmallControlls")
+                </div>
+                
             </nav>
         </div>
     <div class="main shadow">
@@ -58,7 +64,7 @@
 </main><!-- /.container -->
     
 <footer class="footer blog-footer">
-    <div class="container text-white-50">
+    <div class="container text-white-50 text-warning">
         <div class="row">
             <div class="col col-md-4 text-white-50">
                 <h1 class="text-white-50">Heading 1</h1>
@@ -119,7 +125,7 @@
             </div>
         </div>
     </div>
-    <p class="text-muted">&copy; 2018 - Blog</p>
+    <p class=" text-muted">&copy; 2018 - Blog</p>
     </div>  
 </footer>
 
