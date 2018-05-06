@@ -2,7 +2,8 @@
     ViewData["Title"] = "Home Page";
 }
 
-
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
 
 <div class="jumbotron shadow-lg index-jumbotron">
     <div class="row">
@@ -13,27 +14,27 @@
         </div>
         <div class="col col-sm-12">
             <div>
-                <h1 class="display-3">We'd like to belive you!</h1>
-                <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
+                <h1 class="display-3">@Localizer["Hello"]</h1>
+                <p class="lead">@Localizer["Hello_bottom_information"]</p>
             </div>
         </div>
     </div>
   <hr class="my-4">
-  <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
+  <p>@Localizer["over_button_text"]</p>
   <p class="lead">
-    <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
+    <a class="btn btn-primary btn-lg" href="#" role="button">@Localizer["learn_more"]</a>
   </p>
       <p class="lead">
-        <a class="btn btn-primary btn-lg" href="#" role="button">Log In</a>
-        <a class="btn btn-primary btn-lg" href="#" role="button">Registration</a>
+        <a class="btn btn-primary btn-lg" href="#" role="button">@Localizer["login"]</a>
+        <a class="btn btn-primary btn-lg" href="#" role="button">@Localizer["registration"]</a>
     </p>
 
 </div>
 
 <div class=" container" >
     <blockquote class="blockquote text-right">
-        <p class="mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
-        <footer class="blockquote-footer">Someone famous in <cite title="Source Title">Source Title</cite></footer>
+        <p class="mb-0">@Localizer["text_1"]</p>
+        <footer class="blockquote-footer">@Localizer["text_2"]<cite title="Source Title">@Localizer["text_3"]</cite></footer>
     </blockquote>
 </div>
 

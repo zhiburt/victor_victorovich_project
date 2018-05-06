@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 using Blog.Db.Controllers;
@@ -8,10 +9,12 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Rewrite;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Options;
 
 namespace Blog
 {
@@ -55,19 +58,39 @@ namespace Blog
 
             services.ConfigureApplicationCookie(options =>
             {
-                    // Cookie settings
-                    options.Cookie.HttpOnly = true;
+                // Cookie settings
+                options.Cookie.HttpOnly = true;
                 options.ExpireTimeSpan = TimeSpan.FromMinutes(30);
-                    // If the LoginPath isn't set, ASP.NET Core defaults 
-                    // the path to /Account/Login.
-                    options.LoginPath = "/Account/Login";
-                    // If the AccessDeniedPath isn't set, ASP.NET Core defaults 
-                    // the path to /Account/AccessDenied.
-                    options.AccessDeniedPath = "/Account/AccessDenied";
+                // If the LoginPath isn't set, ASP.NET Core defaults 
+                // the path to /Account/Login.
+                options.LoginPath = "/Account/Login";
+                // If the AccessDeniedPath isn't set, ASP.NET Core defaults 
+                // the path to /Account/AccessDenied.
+                options.AccessDeniedPath = "/Account/AccessDenied";
                 options.SlidingExpiration = true;
             });
 
-            services.AddMvc();
+            services.AddLocalization(options => options.ResourcesPath = "Resources");
+
+            services.AddMvc()
+                .AddDataAnnotationsLocalization()
+                .AddViewLocalization();
+
+            services.Configure<RequestLocalizationOptions>(options =>
+                {
+                    var supportedCultures = new[]
+                    {
+                            new CultureInfo("en"),
+                            new CultureInfo("de"),
+                            new CultureInfo("ru"),
+                            new CultureInfo("en-CA"),
+                            new CultureInfo("be")
+                    };
+
+                    options.DefaultRequestCulture = new RequestCulture("en");
+                    options.SupportedCultures = supportedCultures;
+                    options.SupportedUICultures = supportedCultures;
+                });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -95,6 +118,10 @@ namespace Blog
             var statusCode = env.IsDevelopment() ? StatusCodes.Status302Found : StatusCodes.Status301MovedPermanently;
             app.UseRewriter(new RewriteOptions().AddRedirectToHttps(statusCode, httpsPort));
 
+            //Coockie check
+            var locOptions = app.ApplicationServices.GetService<IOptions<RequestLocalizationOptions>>();
+            app.UseRequestLocalization(locOptions.Value);
+ 
 
             app.UseStaticFiles();
 

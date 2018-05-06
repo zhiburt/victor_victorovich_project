@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/zhiburt/victor_victorovich_project/issues"
   },
-  "homepage": "https://github.com/zhiburt/victor_victorovich_project#readme"
+  "homepage": "https://github.com/zhiburt/victor_victorovich_project#readme",
+  "devDependencies": {
+    "fontawesome": "^4.7.2"
+  }
 }

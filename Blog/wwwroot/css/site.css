@@ -1,5 +1,5 @@
 ﻿body {
-    background-color: rgb(43, 62, 80);
+    background-color: rgb(220, 229, 238);
 }
 
 
@@ -13,7 +13,6 @@ html {
 .main {
     margin-bottom: 60px;
     margin-top: 60px;
-    background-color: steelblue;
 }
 
 .footer{
@@ -25,6 +24,7 @@ html {
 
 .index-jumbotron{
     margin: 2rem;
+    background-color: rgb(209, 235, 240);
 }
 
 .index-picture{

@@ -1,5 +1,4 @@
-﻿
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -7,20 +6,22 @@
     <title>@ViewData["Title"] - Blog</title>
 
     <environment include="Development">
-        @RenderSection("Css", required: false)
         <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
         <link rel="stylesheet" href="~/css/site.css" />
-    </environment>
+ 
+    <link rel="stylesheet" href="~/lib/font-awesome/css/font-awesome.css" />
+       </environment>
     <environment exclude="Development">
-        
+ 
         <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
                <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/lib/font-awesome/css/font-awesome.css" />
     </environment>
 </head>
 <body>
 <main role="main" class="container">
     <div class="topbar">
-            <nav class="navbar navbar-expand-lg fixed-top navbar-light bg-light">
+            <nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-primary">
                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -46,16 +47,14 @@
                     </ul>
                     <form class="form-inline my-2 my-lg-0">
                         <input class="form-control mr-sm-2" placeholder="Search" type="text">
-                        <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
+                        <button class="btn btn-secondary my-2 my-sm-0" type="submit"><i class=" fa fa-facebook">Search</i></button>
                     </form>
                 </div>
-                <div>
-                    @Html.Partial("_UserSmallControlls")
-                </div>
+                @Html.Partial("_UserSmallControlls")
                 
             </nav>
         </div>
-    <div class="main shadow">
+    <div class="main shadow bg-success">
 
 
             @RenderBody()
@@ -124,8 +123,13 @@
                 </div>
             </div>
         </div>
-    </div>
-    <p class=" text-muted">&copy; 2018 - Blog</p>
+            <div class="col col-sm-6 float-left">
+                @await Html.PartialAsync("_ChooseLanguageForm")
+            </div>
+            <div class="col col-sm-6 text-right">
+                <p class=" text-muted">&copy; 2018 - Blog</p>      
+            </div>
+        </div>      
     </div>  
 </footer>
 
