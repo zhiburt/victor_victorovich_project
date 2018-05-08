@@ -12,7 +12,8 @@ html {
 /* Set some basic padding to keep content from hitting the edges */
 .main {
     margin-bottom: 60px;
-    margin-top: 60px;
+    margin-top: 80px;
+    background-color:rgb(243, 246, 246);
 }
 
 .footer{
@@ -24,10 +25,33 @@ html {
 
 .index-jumbotron{
     margin: 2rem;
-    background-color: rgb(209, 235, 240);
+    background-color: rgb(193, 216, 221);
 }
 
 .index-picture{
     padding: 4rem;
     margin-bottom: 3rem;
+}
+
+.post-part{
+    margin: 3rem;
+}
+
+.sort-controll{
+    background-color: rgb(170, 209, 209);
+    padding-bottom: 1rem;
+    margin-top: 2rem;
+}
+
+.posts-sm{
+    margin-top: 2rem;
+}
+
+.post-sm{
+    margin-top: 3rem;
+    margin-bottom: 2rem;
+}
+
+.profile-content{
+    margin-right: 1rem;
 }
