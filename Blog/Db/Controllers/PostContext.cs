@@ -6,10 +6,10 @@ using Blog.Models.DbModels;
 
 namespace Blog.Db.Controllers
 {
-    public class IndentityDbContext : IdentityDbContext<UserIndentity, IdentityRole, string> 
+    public class PostContext : DbContext 
     {
-
-        public IndentityDbContext(DbContextOptions<IndentityDbContext> optionsBuilder) : base(optionsBuilder){
+        public DbSet<Post> Posts { get; set; }
+        public PostContext(DbContextOptions<PostContext> optionsBuilder) : base(optionsBuilder){
 
         }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

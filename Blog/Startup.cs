@@ -37,6 +37,8 @@ namespace Blog
                     .AddEntityFrameworkStores<IndentityDbContext>()
                     .AddDefaultTokenProviders();
 
+            ConfigureDb(services);
+
             services.Configure<IdentityOptions>(options =>
             {
                 // Password settings>
@@ -91,6 +93,49 @@ namespace Blog
                     options.SupportedCultures = supportedCultures;
                     options.SupportedUICultures = supportedCultures;
                 });
+        }
+
+        private void ConfigureDb(IServiceCollection services)
+        {       
+            services.AddDbContext<BlockPostContext>(options =>
+                options.UseSqlite(Configuration["Connections:BlockPostContext"]));
+
+            services.AddDbContext<CommentContext>(options =>
+                options.UseSqlite(Configuration["Connections:CommentContext"]));
+
+            services.AddDbContext<LikeContext>(options =>
+                options.UseSqlite(Configuration["Connections:LikeContext"]));
+        
+            services.AddDbContext<MessageContext>(options =>
+                options.UseSqlite(Configuration["Connections:MessageContext"]));
+
+            services.AddDbContext<MessageBoxContext>(options =>
+                options.UseSqlite(Configuration["Connections:MessageBoxContext"]));
+
+            services.AddDbContext<PostContext>(options =>
+                options.UseSqlite(Configuration["Connections:PostContext"]));
+
+            services.AddDbContext<RepostContext>(options =>
+                options.UseSqlite(Configuration["Connections:RepostContext"]));
+
+            services.AddDbContext<TagContext>(options =>
+                options.UseSqlite(Configuration["Connections:TagContext"]));
+
+                //layers
+            
+            services.AddDbContext<TagsLayerContext>(options =>
+                options.UseSqlite(Configuration["Connections:TagLayerContext"]));
+            services.AddDbContext<RepostsLayerContext>(options =>
+                options.UseSqlite(Configuration["Connections:RepostLayerContext"]));
+            services.AddDbContext<CommentsLayerContext>(options =>
+                options.UseSqlite(Configuration["Connections:CommentLayerContext"]));
+            services.AddDbContext<MessageLayerContext>(options =>
+                options.UseSqlite(Configuration["Connections:MessageLayerContext"]));
+            services.AddDbContext<MessageBoxLayerContext>(options =>
+                options.UseSqlite(Configuration["Connections:MessageBoxLayerContext"]));
+            services.AddDbContext<LikeLayerContext>(options =>
+                options.UseSqlite(Configuration["Connections:LikeLayerContext"]));
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

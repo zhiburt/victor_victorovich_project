@@ -6,10 +6,10 @@ using Blog.Models.DbModels;
 
 namespace Blog.Db.Controllers
 {
-    public class IndentityDbContext : IdentityDbContext<UserIndentity, IdentityRole, string> 
+    public class MessageBoxLayerContext : DbContext 
     {
-
-        public IndentityDbContext(DbContextOptions<IndentityDbContext> optionsBuilder) : base(optionsBuilder){
+        public DbSet<MessagesBoxLayer> Comments { get; set; }
+        public MessageBoxLayerContext(DbContextOptions<MessageBoxLayerContext> optionsBuilder) : base(optionsBuilder){
 
         }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

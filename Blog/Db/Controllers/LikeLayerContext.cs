@@ -6,10 +6,10 @@ using Blog.Models.DbModels;
 
 namespace Blog.Db.Controllers
 {
-    public class IndentityDbContext : IdentityDbContext<UserIndentity, IdentityRole, string> 
+    public class LikeLayerContext : DbContext 
     {
-
-        public IndentityDbContext(DbContextOptions<IndentityDbContext> optionsBuilder) : base(optionsBuilder){
+        public DbSet<LikeLayer> LikesLayer { get; set; }
+        public LikeLayerContext(DbContextOptions<LikeLayerContext> optionsBuilder) : base(optionsBuilder){
 
         }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

@@ -3,13 +3,15 @@ using System.Collections.Generic;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Blog.Models.DbModels;
+using Blog.Models.DbModels.Layer;
 
 namespace Blog.Db.Controllers
 {
-    public class IndentityDbContext : IdentityDbContext<UserIndentity, IdentityRole, string> 
+    public class MessageLayerContext : DbContext 
     {
-
-        public IndentityDbContext(DbContextOptions<IndentityDbContext> optionsBuilder) : base(optionsBuilder){
+        //TODO!!!!!!! VJOPU!
+        public DbSet<MessagesLayer> CommentsLayer { get; set; }
+        public MessageLayerContext(DbContextOptions<MessageLayerContext> optionsBuilder) : base(optionsBuilder){
 
         }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
