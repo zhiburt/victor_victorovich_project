@@ -8,6 +8,7 @@ namespace Blog.Db.Controllers
 {
     public class TagContext : DbContext 
     {
+        public const string SEPARATOR = "|";
         public DbSet<Tag> Tags { get; set; }
         public TagContext(DbContextOptions<TagContext> optionsBuilder) : base(optionsBuilder){
 

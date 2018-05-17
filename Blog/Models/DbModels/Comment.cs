@@ -9,10 +9,10 @@ namespace Blog.Models.DbModels
     {
         [Key]
         public string Id { get; set; }
-        public UserIndentity User { get; set; }
-        public UserIndentity AbsentUser { get; set; }
+        public string UserId { get; set; }
+        public string AbsentUser { get; set; }
         public string Content { get; set; }
-        public List<Like> Likes { get; set; }
-        public List<Repost> Reposts { get; set; }
+        public string LikesId { get; set; }
+        public string RepostsId { get; set; }
     }
 }

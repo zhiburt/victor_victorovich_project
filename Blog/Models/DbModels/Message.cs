@@ -14,7 +14,7 @@ namespace Blog.Models.DbModels
     {
         [Key]
         public string Id { get; set; }
-        public UserIndentity User { get; set; }
+        public string UserId { get; set; }
         public DateTime Time { get; set; }
         public string Content { get; set; }
         public MessageLevel MessageLevel { get; set; }

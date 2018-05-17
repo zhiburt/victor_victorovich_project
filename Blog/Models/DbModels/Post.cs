@@ -2,6 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Identity;
 using System.ComponentModel.DataAnnotations;
+using System;
 
 namespace Blog.Models.DbModels
 {
@@ -9,12 +10,14 @@ namespace Blog.Models.DbModels
     {
         [Key]
         public string Id { get; set; }
-        public UserIndentity Creator { get; set; }
+        public string CreatorId { get; set; }
         public string Theme { get; set; }
         public string Content { get; set; }
-        public TagsLayer Tags { get; set; }
-        public RepostsLayer Reposts { get; set; }
-        public CommentsLayer Comments { get; set; }
-        public LikeLayer Likes { get; set; } 
-    }
+        public string Title { get; set; }
+        public DateTime Date { get; set; }
+        public string TagsId { get; set; }
+        public string RepostsId { get; set; }
+        public string CommentsId { get; set; }
+        public string LikesId { get; set; } 
+   }
 }

@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using Microsoft.AspNetCore.Identity;
 using System.ComponentModel.DataAnnotations;
 using System;
-using Blog.Models.DbModels.Layer;
 
 namespace Blog.Models.DbModels
 {
@@ -15,9 +14,9 @@ namespace Blog.Models.DbModels
     {
         [Key]
         public int Id { get; set; }
-        public UserIndentity Creator { get; set; }
-        public List<UserIndentity> OtherUsers { get; set; }
-        public MessagesLayer Messages { get; set; }
+        public string CreatorId { get; set; }
+        public string OtherUsersId { get; set; }
+        public string MessagesId { get; set; }
         public DateTime TimeCreated { get; set; }
         public string Content { get; set; }
         public MessageBoxLevel MessageBoxLevel { get; set; }

@@ -1,6 +1,7 @@
 ﻿
 @{
     var Footer = ViewData["Footer"];
+    var Container = ViewData["Container"];
 }
 
 <!DOCTYPE html>
@@ -13,7 +14,8 @@
     <environment include="Development">
         <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
         <link rel="stylesheet" href="~/css/site.css" />
- 
+        @RenderSection("Css", required: false)
+        
  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.12/css/all.css" integrity="sha384-G0fIWCsCzJIMAVNQPfjH08cyYaUtMwjJwqiRKxxE/rx96Uroj1BtIQ6MLJuheaO9" crossorigin="anonymous">      </environment>
     <environment exclude="Development">
  
@@ -23,7 +25,7 @@
     </environment>
 </head>
 <body>
-<main role="main" class="container">
+<main role="main">
     <div class="topbar">
             <nav class="navbar navbar-expand-sm fixed-top navbar-light bg-light">
                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
@@ -60,10 +62,18 @@
                 
             </nav>
         </div>
-    <div class="main shadow">
+    <div class="">
 
-
-            @RenderBody()
+            @if(Container == null){
+                <div class="main container shadow">
+                    @RenderBody()
+                </div>
+            }
+            else{
+                <div class="container-fluid shadow main-fluid">
+                    @RenderBody()
+                </div>
+            }
     
     </div>        
 </main><!-- /.container -->

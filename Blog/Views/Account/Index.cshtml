@@ -1,0 +1,80 @@
+@using Microsoft.AspNetCore.Identity
+@using Blog.Models.DbModels
+@using Blog.ViewModels.Account
+@using Blog.ViewModels.PostController;
+
+@{
+    ViewData["Title"] = "Start";
+    Layout = "_Layout_authefication";
+    var newsViewModel = (NewsViewModel)ViewData["newsViewModel"];
+}
+
+@inject SignInManager<UserIndentity> SignInManager;
+@inject UserManager<UserIndentity> UserManager;
+
+@model CreatePostViewModel;
+
+
+@section Css{
+    <link rel="stylesheet" href="~/css/news-page.css" />
+}
+
+<div class="row">
+    <div class="col col-sm-12 col-md-9">
+        <div class="content-news">
+            <div class="block block-1">
+                @await Html.PartialAsync("_small_input")
+            </div>        
+            
+            <div class="content">
+                <div class="block block-2">
+                
+                </div>        
+            
+                <div class="block block-2">
+                
+                </div>        
+            
+            </div>
+            
+        </div>
+    </div>
+    <div class="col col-sm-12 col-md-3">
+        <div class="block block-3">
+                
+            </div>        
+    </div>
+</div>
+
+<p>IT'S the NEWS</p>
+<p>IT'S the NEWS</p>
+<p>IT'S the NEWS</p>
+<p>IT'S the NEWS</p>
+<p>IT'S the NEWS</p>
+<p>IT'S the NEWS</p>
+<p>IT'S the NEWS</p>
+<p>IT'S the NEWS</p>
+<a asp-action="Profile" asp-route-userId="@UserManager.GetUserId(User)">CLICK ME!</a>
+
+
+@section Scripts
+    {
+
+    @await Html.PartialAsync("_ValidationScriptsPartial")
+    <script src='https://cloud.tinymce.com/stable/tinymce.min.js'></script>
+
+   <script>
+          
+        tinymce.init({
+            selector: '#content1',
+            height: 170,
+            max_height: 170,
+            theme: 'modern',
+            paste_data_images: true,
+            menubar: false,
+            statusbar: false
+        });
+        
+
+    </script>
+    }

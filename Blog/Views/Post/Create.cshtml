@@ -1,0 +1,135 @@
+﻿@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
+@{
+    ViewData["Title"] = "Create";
+}
+
+@using Blog.ViewModels.PostController;
+@model CreatePostViewModel;
+
+
+@section Css{
+    <link rel="stylesheet" href="~/lib/Bootstrap-4-Tag-Input-Plugin-jQuery/tagsinput.css" />
+}
+
+
+<h2>@Localizer["Сreate"]</h2>
+
+<form method="post" asp-action="Create" asp-controller="Post">
+    <div class="form-group">
+        <label for="Title">@Localizer["Title"]</label>
+        <div class="input-group">
+            <span class="input-group-addon"><i class="fa fa-ticket"></i></span>
+            <input type="text" class="form-control" id="Title" placeholder="@Localizer["Title"]" asp-for="Title">
+        </div>
+
+        <small id="titleHelp" class="form-text text-muted">@Localizer["TitleDescription"]</small>
+        <span asp-validation-for="Title" class="text-danger"></span>
+
+    </div>
+
+    <div class="form-group">
+        <div class="manual-image">
+            <input type="file" class="" asp-for="MainImage" id="filechooser">
+        </div>
+    </div>
+
+    <label for="Tags">@Localizer["Tags"]</label>
+    <div class="">
+        <input class="form-control" asp-for="Tags" type="text" value=".NET CORE,Java" id="input-tags" />
+        <span asp-validation-for="Tags" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label for="Theme">@Localizer["SelectThemes"]</label>
+        @* TODO asp-items refactor *@
+        <select class="form-control" asp-for="Theme" id="themes">
+            <option>Vue.js</option>
+            <option>ASP.NET CORE</option>
+            <option>JVW</option>
+            <option>Order</option>
+        </select>
+        <span asp-validation-for="Theme" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label for="Content">@Localizer["Content"]</label>
+        <textarea asp-for="Body" id="content1"></textarea>
+        <span asp-validation-for="Body" class="text-danger"></span>
+    </div>
+    <button type="submit" class="btn btn-default">@Localizer["Submit"]</button>
+
+</form>
+
+@section Scripts
+    {
+
+    @await Html.PartialAsync("_ValidationScriptsPartial")
+    <script src='https://cloud.tinymce.com/stable/tinymce.min.js'></script>
+
+   <script>
+          
+        
+        tinymce.init({
+            selector: '#content1',
+            height: 500,
+            theme: 'modern',
+            plugins: 'print image preview paste imagetools fullpage searchreplace autolink directionality visualblocks visualchars fullscreen image link media template codesample table charmap hr pagebreak nonbreaking anchor toc insertdatetime advlist lists textcolor wordcount imagetools contextmenu colorpicker textpattern help',
+            toolbar1: 'formatselect | bold italic strikethrough forecolor backcolor | link | alignleft aligncenter alignright alignjustify  | numlist bullist outdent indent  | removeformat',
+            paste_data_images: true
+        });
+
+    </script>
+    <script src="~/lib/typeahead.js/dist/bloodhound.min.js"></script>
+    <script src="~/lib/typeahead.js/dist/typeahead.jquery.min.js"></script>
+    <script src="~/lib/Bootstrap-4-Tag-Input-Plugin-jQuery/tagsinput.js"></script>
+    <script>
+
+        $('#input-tags').tagsinput({
+            maxChars: 25,
+            maxTags: 5,
+            typeaheadjs: [{
+                minLength: 1,
+                highlight: true
+            }, {
+                minlength: 1,
+                source: new Bloodhound({
+                    datumTokenizer: Bloodhound.tokenizers.whitespace,
+                    queryTokenizer: Bloodhound.tokenizers.whitespace,
+                    prefetch: "/Tags.json"
+                })
+            }],
+            freeInput: true
+        });
+
+
+    </script>
+    <script>
+
+        function uploadFile() {
+            var blobFile = $('#filechooser').prop("files")[0];
+            var formData = new FormData();
+            formData.append("fileToUpload", blobFile);
+            console.log(blobFile);
+            console.log($('#filechooser').val())
+            $.ajax({
+                url: "upload.php",
+                type: "POST",
+                data: formData,
+                processData: false,
+                contentType: false,
+                success: function (response) {
+                    // .. do something
+                },
+                error: function (jqXHR, textStatus, errorMessage) {
+                    console.log(errorMessage); // Optional
+                }
+            });
+        }
+
+            $('#filechooser').change(function () {
+                uploadFile();
+            });
+
+    </script>
+}

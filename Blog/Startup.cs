@@ -122,20 +122,8 @@ namespace Blog
                 options.UseSqlite(Configuration["Connections:TagContext"]));
 
                 //layers
-            
-            services.AddDbContext<TagsLayerContext>(options =>
-                options.UseSqlite(Configuration["Connections:TagLayerContext"]));
-            services.AddDbContext<RepostsLayerContext>(options =>
-                options.UseSqlite(Configuration["Connections:RepostLayerContext"]));
-            services.AddDbContext<CommentsLayerContext>(options =>
-                options.UseSqlite(Configuration["Connections:CommentLayerContext"]));
-            services.AddDbContext<MessageLayerContext>(options =>
-                options.UseSqlite(Configuration["Connections:MessageLayerContext"]));
             services.AddDbContext<MessageBoxLayerContext>(options =>
                 options.UseSqlite(Configuration["Connections:MessageBoxLayerContext"]));
-            services.AddDbContext<LikeLayerContext>(options =>
-                options.UseSqlite(Configuration["Connections:LikeLayerContext"]));
-
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

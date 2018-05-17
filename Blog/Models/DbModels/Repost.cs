@@ -9,8 +9,8 @@ namespace Blog.Models.DbModels
     {
         [Key]
         public string Id { get; set; }
-        public Post NaturePost { get; set; }
+        public string NaturePostId { get; set; }
         public string Content { get; set; }
-        public LikeLayer Likes { get; set; }
+        public string LikesId { get; set; }
     }
 }

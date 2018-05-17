@@ -55,3 +55,18 @@ html {
 .profile-content{
     margin-right: 1rem;
 }
+
+.main-fluid{
+    margin-bottom: 60px;
+    margin-top: 80px;
+    background-color:rgb(223, 223, 201);    
+}
+
+
+.card-user-profile{
+    margin-top: 2rem;
+}
+
+.left-list-menu{
+    margin-top: 2rem;
+}

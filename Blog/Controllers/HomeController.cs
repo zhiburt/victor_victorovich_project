@@ -5,13 +5,29 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Blog.Models;
+using Microsoft.AspNetCore.Identity;
+using Blog.Models.DbModels;
 
 namespace Blog.Controllers
 {
     public class HomeController : Controller
     {
+        private readonly SignInManager<UserIndentity> _signInManager;
+
+        public HomeController(
+            SignInManager<UserIndentity> signInManager
+        )
+        {
+            this._signInManager = signInManager;
+        }
+
         public IActionResult Index()
         {
+            if(_signInManager.IsSignedIn(User))
+            {
+                return RedirectToAction("Index", "Account");
+            }
+
             return View();
         }
 

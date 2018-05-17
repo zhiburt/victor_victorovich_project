@@ -9,7 +9,7 @@ namespace Blog.Models.DbModels
     {
         [Key]
         public string Id { get; set; }
-        public UserIndentity UserCreated { get; set; }
+        public string UserCreatedId { get; set; }
         public string Name { get; set; }
         public double Fame { get; set; }
     }

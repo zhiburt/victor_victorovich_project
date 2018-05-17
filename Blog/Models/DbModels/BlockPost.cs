@@ -9,13 +9,13 @@ namespace Blog.Models.DbModels
     {
         [Key]
         public string Id { get; set; }
-        public UserIndentity Creator { get; set; }
+        public string CreatorId { get; set; }
         public string Theme { get; set; }
         public string Content { get; set; }
-        public List<Tag> Tags { get; set; }
-        public List<Repost> Reposts { get; set; }
-        public List<Comment> Comments { get; set; }
-        public List<Like> Likes { get; set; } 
-        public List<Post> Posts { get; set; }
+        public string TagsId { get; set; }
+        public string RepostsId { get; set; }
+        public string CommentsId { get; set; }
+        public string LikesId { get; set; } 
+        public string PostsId { get; set; }
     }
 }

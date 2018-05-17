@@ -7,7 +7,8 @@ using Blog.Models.DbModels;
 namespace Blog.Db.Controllers
 {
     public class PostContext : DbContext 
-    {
+    {   
+        public const string SEPARATOR = "|";
         public DbSet<Post> Posts { get; set; }
         public PostContext(DbContextOptions<PostContext> optionsBuilder) : base(optionsBuilder){
 

@@ -9,7 +9,7 @@ namespace Blog.Models.DbModels
     {
         //Properties User
         public String Picture { get; set; } 
-        public MessagesBoxLayer MessageBoxes { get; set; }
-        public List<UserIndentity> Folowers { get; set; }
+        public string MessagesBoxLayerId { get; set; }
+        public string FolowersId { get; set; }
     }
 }

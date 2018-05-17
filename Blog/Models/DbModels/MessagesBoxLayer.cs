@@ -9,6 +9,6 @@ namespace Blog.Models.DbModels
     {
         [Key]
         public int Id { get; set; }
-        public List<MessageBox> MessageBoxes { get; set; }
+        public string MessageBoxesId { get; set; }
     }
 }

@@ -1,0 +1,22 @@
+@using Microsoft.AspNetCore.Mvc.Localization
+@using Blog.ViewModels.PostController;
+
+@model CreatePostViewModel;
+
+@inject IViewLocalizer Localizer
+
+<form method="post" asp-action="Create" asp-controller="Post">
+    <div class="form-group">
+        <div class="input-group input-group-sm ">
+            <div class="input-group-prepend">
+                <span asp-falidation-for="Title" class="input-group-text" id="inputGroup-sizing-sm">Small</span>
+            </div>
+            <input asp-for="Title" type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+        </div>
+        <!-- <label for="Content">@Localizer["Content"]</label> -->
+        <textarea asp-for="Body" id="content1"></textarea>
+        <span asp-validation-for="Body" class="text-danger"></span>
+        <button type="submit" class="btn btn-block btn-default">@Localizer["Submit"]</button>
+    </div>
+    
+</form>
