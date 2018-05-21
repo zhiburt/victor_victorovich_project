@@ -39,53 +39,58 @@ $(document).ready(function () {
     $('iframe').addClass('embed-responsive-item embed-responsive embed-responsive-16by9');
 });
 
-// $("#like").click(function () {
+$(".like").click(function () {
 
-//     var userData1 = {
-//         'manualName': $('.blog-title').text(),
-//         'creator': $('.creator-blog').text(),
-//         'data': true
-//     };
-//     console.log(userData1)
-//     $.ajax({
-//         type: "POST",
-//         url: "/api/AddLike",
-//         data: userData1,
-//         dataType: "json",
-//         success: function (data) {
-//             $('#like').addClass("text-success");
-//             $('#dislike').removeClass("text-success");
-//         },
-//         error: function (erorr) {
-//             ;
-//         }
-//     })
-// });
+    var userData1 = {
+        'postCreatorId': $('#postCreatorId').text(),
+        'postTitle': $('.post-title').text(),
+        'likeState': true
+    };
 
-// $("#dislike").click(function () {
+    console.log(userData1)
+    $.ajax({
+        type: "POST",
+        url: "/ajax/post/addLike",
+        data: userData1,
+        dataType: "json",
+        success: function (data) {
+            console.log(data);
+            $('#like').removeClass("text-white");            
+            $('#like').addClass("text-success");                        
+            $('#dislike').removeClass("text-success");
+        },
+        error: function (erorr) {
+            ;
+        }
+    })
+});
 
-
-
-//     var userData2 = {
-//         'manualName': $('.blog-title').text(),
-//         'creator': $('.creator-blog').text(),
-//         'data': false
-//     };
+$(".dislike").click(function () {
 
 
-//     console.log(userData2)
 
-//     $.ajax({
-//         type: "POST",
-//         url: "/api/AddLike",
-//         data: userData2,
-//         dataType: "json",
-//         success: function (data) {
-//             $('#dislike').addClass("text-success");
-//             $('#like').removeClass("text-success")
-//         },
-//         error: function (erorr) {
-//             ;
-//         }
-//     })
-// });
+    var userData2 = {
+        'postCreatorId': $('#postCreatorId').text(),
+        'postTitle': $('.post-title').text(),
+        'likeState': false
+    };
+
+
+    console.log(userData2)
+
+    $.ajax({
+        type: "POST",
+        url: "/ajax/post/addLike",
+        data: userData2,
+        dataType: "json",
+        success: function (data) {
+            console.log(data);
+            $('#dislike').removeClass("text-white");            
+            $('#dislike').addClass("text-success");                        
+            $('#like').removeClass("text-success");
+        },
+        error: function (erorr) {
+            ;
+        }
+    })
+});

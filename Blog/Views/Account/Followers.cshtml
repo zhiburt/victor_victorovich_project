@@ -1,0 +1,64 @@
+@using Microsoft.AspNetCore.Identity
+@using Blog.Models.DbModels
+@using Blog.ViewModels.Account
+@using Blog.ViewModels.PostController;
+
+@{
+    ViewData["Title"] = "Followers";
+    Layout = "_Layout_authefication";
+    var followersViewModel = (FollowersViewModel)ViewData["followersViewModel"];
+}
+
+@inject SignInManager<UserIndentity> SignInManager;
+@inject UserManager<UserIndentity> UserManager;
+
+
+@section Css{
+    <link rel="stylesheet" href="~/css/followers-page.css" />
+}
+<div class="row">
+    <div class="col col-sm-12 col-md-9">
+        <div class="followers-container">
+            @{
+                if(followersViewModel.UsersActivity != null){
+                    foreach (var item in followersViewModel.UsersActivity)
+                    {
+                        <div class="card shadow-sm flex-md-row mb-4 box-shadow h-md-250">
+                            <img class="card-img-right flex-auto d-none d-lg-block" alt="Thumbnail [200x250]" style="width: 200px; height: 250px;" src="~/images/test/1.jpg" data-holder-rendered="true">
+                        
+                            <div class="card-body d-flex flex-column align-items-start">
+                                <strong class="d-inline-block mb-2 text-info">\friend</strong>
+                                <h3 class="mb-0">
+                                    <a class="text-primary" asp-action="Profile" asp-controller="Account" asp-route-userId="@item.Id">@item.UserName</a>
+                                </h3>
+                            <div class="mb-1 text-muted">lock up: <mark>online</mark></div>
+                                <div class="row">
+                                    <div class="col col-sm-4 col-md-4 align-center">
+                                        <a class="btn btn-success rounded-circle"><i class=" fa fa-4x fa-exclamation-circle"></i></a>
+                                    </div>
+                                    <div class="col col-sm-4 col-md-4">
+                                        <a class="btn btn-outline-dark rounded-circle"><i class=" fa fa-4x  fa-key"></i></a>                            
+                                    </div>
+                                    <div class="col col-sm-4 col-md-4">
+                                        <a class="btn btn-outline-info rounded-circle"><i class=" fa fa-4x fa-seedling"></i></a>                                                                                
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    }
+                }
+            }
+        </div>
+    <div class="col col-sm-12 col-md-3">
+        <div class="block block-3">
+                
+            </div>        
+    </div>
+</div>
+</div>
+
+@section Scripts
+    {
+
+    }

@@ -53,6 +53,8 @@ namespace Blog.Controllers
                 var post = await _postContext.Posts.FirstOrDefaultAsync(p => p.Id == postId);
                 var tags = await GetTags(SplitField(post.TagsId, SEPARATOR));
                 var tests = await GetElements(SplitField(post.TagsId, SEPARATOR), _tagContext.Tags.ToArray());
+                var likesId = SplitField(post.LikesId, SEPARATOR);
+                int amountLikes = likesId == null ? 0 : likesId.Count();
 
                 var user = await _userManager.FindByIdAsync(post.CreatorId);
                 if (post != null)
@@ -67,7 +69,8 @@ namespace Blog.Controllers
                         Creator = user,
                         Date = post.Date,
                         // Comments = post.Comments.ToList(),
-                        Title = post.Title
+                        Title = post.Title,
+                        AmountLikes = amountLikes
                     };
 
                     return View(postViewModel);
@@ -159,6 +162,9 @@ namespace Blog.Controllers
         {
             return await Task.Run(() =>
             {
+                if(elementsId == null)
+                    return null;
+
                 var responceElements = new List<T>();
 
                 Type type = typeof(T);

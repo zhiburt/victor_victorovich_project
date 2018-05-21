@@ -17,6 +17,7 @@ namespace Blog.Models.PostController
         public List<Tag> Tags { get; set; }
         public List<Repost> Reposts { get; set; }
         public List<Comment> Comments { get; set; }
+        public int AmountLikes { get; set; } 
         public List<Like> Likes { get; set; } 
     }
 }

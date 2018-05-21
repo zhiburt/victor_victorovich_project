@@ -52,8 +52,16 @@
                         <form class="form-inline my-2 my-lg-0">
                             <input class="form-control mr-sm-2" placeholder="Search" type="text">
                         </form>
+                    @RenderSection("Navbar", required: false)   
+                        
                     </div>    
+                    
                 </div>
+
+                
+                <a class="navbar-brand text-center" asp-action="Index" asp-controller="Users">
+                    <i class=" fa fa-folder"></i>
+                </a>
 
                 <a class="navbar-brand text-center" href="#">
                     <i class=" fa fa-bell"></i>
@@ -86,11 +94,15 @@
                                         <a class=" text-info" asp-action="Profile" asp-route-userId="@UserManager.GetUserId(User)"><i class="fa fa-home"> I</i></a>
                                     </li>
                                     <li class="list-group-item d-flex justify-content-between align-items-center">
-                                        <i class=" fa fa-newspaper"> News</i> 
+                                        <a class=" text-dark" asp-action="Index" asp-controller="Account"><i class=" fa fa-newspaper"> News</i></a>
                                         <span class="badge badge-primary badge-pill">14</span>
                                     </li>
                                     <li class="list-group-item d-flex justify-content-between align-items-center">
-                                        <i class=" fa fa-hand-peace"></i>Followers
+                                        <a asp-action="Index" asp-controller="Chat"><i class=" fa fa-bus"> </i> Chat</a>
+                                        <span class="badge badge-primary badge-pill">179</span>
+                                    </li>
+                                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                                        <a asp-action="Followers" asp-controller="Account"><i class=" fa fa-hand-peace"></i>Followers</a>
                                         <span class="badge badge-primary badge-pill">2</span>
                                     </li>
                                     <li class="list-group-item d-flex justify-content-between align-items-center">

@@ -28,10 +28,19 @@
       <header class="blog-header py-3">
         <div class="row flex-nowrap justify-content-between align-items-center">
           <div class="col-4 pt-1">
-            <a class="btn btn-outline-info btn-lg" href="#">Subscribe</a>
+            <form method="POST" asp-route-userId="@post.Creator" asp-action="AddFollow" asp-controller="Users">
+              <button class="btn btn-outline-info btn-lg" type="submit">Subscribe</button>
+            </form>
           </div>
           <div class="col-4 text-center">
-            <a class="blog-header-logo text-dark" href="#">@@<em>@post.Creator.UserName</em></a>
+            <a class="blog-header-logo text-dark" 
+              asp-action="Profile"
+              asp-route-userId="@post.Creator.Id" 
+              asp-controller="Account">
+              
+                @@<em>@post.Creator.UserName</em>
+              
+            </a>
           </div>
           <div class="col-4 d-flex justify-content-end align-items-center">
             <a class="text-muted" href="#">
@@ -53,9 +62,9 @@
         </nav>
       </div>
 
-      <div class="jumbotron text-white shadow-lg rounded bg-primary">
-        <div class="col-md-6 px-0">
-          <h1 class="display-4 font-italic">@post.Title</h1>
+      <div class="jumbotron row text-white shadow-lg rounded bg-primary">
+        <div class="col col-md-6 px-0">
+          <h1 class="display-4 font-italic" id="post-title">@post.Title</h1>
           <p class="lead my-3">@post.Theme</p>
           <p class="lead mb-0">
             @{
@@ -64,11 +73,14 @@
                 <a href="#" class="badge badge-pill badge-danger"><i>@item.Name</i></a>
               }
             }
-          </p>
+          </p>      
+        </div>
+        <div class="col col-md-6 px-0">
+          <div id="info-controll" class=" text-right">
+            <p class="lead my-3">LIKES : @post.AmountLikes.ToString()</p>
+          </div>
         </div>
       </div>
-
-      
     </div>
 
     <main role="main" class="container-content shadow content">
@@ -123,6 +135,13 @@
       </div><!-- /.row -->
 
     </main><!-- /.container -->
+    
+    <div class="like-controll">
+      <h1 class="display-4 font-italic text-center">
+        <a class=" text-white" id="like" href="#"><i class="fa fa-3x fa-thumbs-up"></i></a>   
+        <a class=" text-white" id="dislike" href="#"><i class="fa fa-3x fa-thumbs-down"></i></a>               
+      </h1>
+    </div>
 
     <div class="next-posts-bottom">
         <div class="row">
@@ -265,6 +284,11 @@
       <p>
         <a href="#">Back to top</a>
       </p>
+      <div>
+          <!-- COSTIL !!!!-->
+          <!-- NEED USE REGULAR EXPRESSION IN URL! -->
+          <p id="postCreatorId"><em>@post.Creator.Id</em></p>
+      </div>
     </footer>
 
 @section Scripts

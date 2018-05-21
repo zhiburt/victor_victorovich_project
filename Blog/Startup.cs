@@ -15,6 +15,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
+using SignalRChat.Hubs;
 
 namespace Blog
 {
@@ -93,6 +94,9 @@ namespace Blog
                     options.SupportedCultures = supportedCultures;
                     options.SupportedUICultures = supportedCultures;
                 });
+
+            
+            services.AddSignalR();
         }
 
         private void ConfigureDb(IServiceCollection services)
@@ -165,6 +169,11 @@ namespace Blog
                 routes.MapRoute(
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
+            });
+
+            app.UseSignalR(routes => 
+            {
+                routes.MapHub<ChatHub>("/chathub");
             });
         }
     }

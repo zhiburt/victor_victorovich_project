@@ -34,6 +34,24 @@
 
 }
 
+.like-controll{
+  margin-top:3rem;
+  padding-top:5rem;
+  padding-bottom:5rem;
+  background-color: rgba(226, 211, 211, 0.897);
+}
+
+#like{
+  margin:2rem;
+  padding: 4rem;
+}
+
+
+#dislike{
+  margin:2rem;
+  padding: 4rem;
+}
+
 /* TEXT AREA ===> NEW COMMENTS */
 
 textarea{

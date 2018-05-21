@@ -7,12 +7,12 @@
     ViewData["Title"] = "Start";
     Layout = "_Layout_authefication";
     var newsViewModel = (NewsViewModel)ViewData["newsViewModel"];
+    var newsPosts =  newsViewModel.PostsActivity;
 }
 
 @inject SignInManager<UserIndentity> SignInManager;
 @inject UserManager<UserIndentity> UserManager;
 
-@model CreatePostViewModel;
 
 
 @section Css{
@@ -26,15 +26,92 @@
                 @await Html.PartialAsync("_small_input")
             </div>        
             
-            <div class="content">
-                <div class="block block-2">
-                
-                </div>        
-            
-                <div class="block block-2">
-                
-                </div>        
-            
+            <div class="content-news-post">
+                <div class="row">
+                    <div class="col col-md-12 col-sm-12">
+                        @if(newsPosts != null){
+                            foreach (var item in newsPosts)
+                        {
+
+                            if(item.TagsId != null){
+                                        <div class="card shadow-sm post-sm">
+                                            @if(item.Content.Contains("<img")){
+                                                string src = ProfileViewModel.FirstImgSrcHtml(item.Content);
+                                                
+                                                <img class="card-img-top" src="@src" style="max-height:30rem;" alt="Thumbnail [200x250]">
+                                            }
+                                        <div class=" card-header">
+                                            <a asp-action="Index" asp-controller="Post" asp-route-postId="@item.Id"><p>@item.Title</p></a>
+                                        </div>
+                                        <div class="card-body">
+                                            <h5 class="card-title">SMALL CONTEXT</h5>
+                                            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                                        </div>
+                                        <div class=" card-footer">
+                                            <div class="row text-black-50">
+                                                <div class=" col col-3 text-left">
+                                                    <p>Likes <i>2</i></p>
+                                                </div>
+                                                <div class=" col col-3">
+                                                    <p class="card-text"><small class="text-muted"><i>@item.Date</i></small></p>                                                                                                                                        
+                                                </div>
+                                                <div class=" col col-3 text-right">
+                                                    <p>Reposts <i>0</i></p>
+                                                </div>
+                                                <div class=" col col-3 text-right">
+                                                    <p>a Something <i>6</i></p>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>                      
+                            }
+                            else{
+                                <div class="card shadow-sm post-sm">
+                                        <div class=" card-header">
+                                            <a href="#"><p>@item.Title</p></a>
+                                        </div>
+                                        <div class="card-body">
+                                            <h5 class="card-title">@Html.Raw(@item.Content)</h5>
+                                        </div>
+                                        <div class=" card-footer">
+                                            <div class="row text-black-50">
+                                                <div class=" col col-3 text-left">
+                                                    <div class="row">
+                                                        <div class="col col-6 text-center">
+                                                            <a class="text-dark-50" href="#"><i class="fa fa-thumbs-up fa-2x"></i></a>
+                                                        </div>
+                                                        <div class="col col-6 text-center">
+                                                            <a class="text-dark-50" href="#"><i class="fa fa-thumbs-down fa-2x"></i></a>                                                            
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class=" col col-3">
+                                                    <p class="card-text"><small class="text-muted"><i>@item.Date</i></small></p>                                                                                        
+                                                    
+                                                </div>
+                                                <div class=" col col-3 text-right">
+                                                    <p>Reposts <i>0</i></p>
+                                                </div>
+                                                <div class=" col col-3 text-right">
+                                                    <p>a Something <i>6</i></p>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                            }
+                        } 
+                        else{
+                            <div>
+                                <div class=" jumbotron">
+                                    <p>YOU DONT HAVE FOLLOWERS (POSTS)</p>
+                                </div>                    
+                            </div>
+                        }
+                    </div>
+                </div>
             </div>
             
         </div>
@@ -42,23 +119,12 @@
     <div class="col col-sm-12 col-md-3">
         <div class="block block-3">
                 
-            </div>        
+        </div>        
     </div>
 </div>
 
-<p>IT'S the NEWS</p>
-<p>IT'S the NEWS</p>
-<p>IT'S the NEWS</p>
-<p>IT'S the NEWS</p>
-<p>IT'S the NEWS</p>
-<p>IT'S the NEWS</p>
-<p>IT'S the NEWS</p>
-<p>IT'S the NEWS</p>
-<a asp-action="Profile" asp-route-userId="@UserManager.GetUserId(User)">CLICK ME!</a>
-
-
 @section Scripts
-    {
+{
 
     @await Html.PartialAsync("_ValidationScriptsPartial")
     <script src='https://cloud.tinymce.com/stable/tinymce.min.js'></script>

@@ -1,7 +1,6 @@
 {
   "name": "blog",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -11,5 +10,10 @@
   "devDependencies": {
     "bootstrap": "^4.1.0",
     "jquery": "^3.3.1"
+  },
+  "keywords": [],
+  "description": "",
+  "dependencies": {
+    "@aspnet/signalr": "^1.0.0-rc1-update1"
   }
 }

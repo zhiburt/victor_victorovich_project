@@ -19,6 +19,7 @@ namespace Blog.Controllers
     [Route("/Acc")]
     public class AccountController : Controller
     {
+        public const string SEPARATOR = "|";
         private readonly UserManager<UserIndentity> _userManager;
         private readonly SignInManager<UserIndentity> _signInManager;
         private readonly ILogger<AutheficationController> _logger;
@@ -41,14 +42,35 @@ namespace Blog.Controllers
         {
             var user = await _userManager.GetUserAsync(HttpContext.User);
 
-            var followersPosts = FollowerPosts(user, _postContext);
+            var splitFollowers = SplitField(user.FolowersId, SEPARATOR);
+            var folowersEntity = await GetElements(splitFollowers, _userManager.Users.ToArray());
+            var followersPosts = FollowerPosts(folowersEntity);
             var newsViewModel = new NewsViewModel
             {
-                // UsersActivity = user.FolowersId,
+                UsersActivity = folowersEntity,
                 PostsActivity = followersPosts
             };
 
             ViewData["newsViewModel"] = newsViewModel;
+
+            return View();
+        }
+
+        [Route("/followers")]
+        public async Task<IActionResult> Followers()
+        {
+            var user = await _userManager.GetUserAsync(HttpContext.User);
+
+            var splitFollowers = SplitField(user.FolowersId, SEPARATOR);
+            var folowersEntity = await GetElements(splitFollowers, _userManager.Users.ToArray());
+            var followersPosts = FollowerPosts(folowersEntity);
+            var followersViewModel = new FollowersViewModel
+            {
+                UsersActivity = folowersEntity,
+                PostsActivity = followersPosts
+            };
+
+            ViewData["followersViewModel"] = followersViewModel;
 
             return View();
         }
@@ -89,28 +111,25 @@ namespace Blog.Controllers
             return postContext.Posts.Where(post => post.CreatorId == user.Id);
         }
 
-        private IEnumerable<Post> FollowerPosts(UserIndentity user, PostContext postContext)
+        private IEnumerable<Post> FollowerPosts(IEnumerable<UserIndentity> folowers)
         {
-            // var followers = user.Folowers?.ToList();
-            // if (followers != null)
-            // {
-            //     var list = new List<Post>();
+            if(folowers == null){
+                return null;
+            }
 
-            //     IEnumerable<Post> posts;
-            //     foreach (var item in followers)
-            //     {
-            //         posts = UserPosts(item, postContext);
-            //         list.AddRange(posts);
-            //     }
+            var responceList = new List<Post>();
 
-            //     IEnumerable<Post> supperPosts;
-            //     supperPosts = FunctionBeutifulPost(list);
+            IEnumerable<Post> enumerable = null;
+            foreach(var follower in folowers){
+                enumerable = UserPosts(follower, _postContext);
+                
+                if(enumerable != null)
+                    responceList.AddRange(enumerable);
+            }
 
-            //     return supperPosts;
-            // }
-
-            return null;
+            return responceList.Count > 0 ? responceList : null;
         }
+        
 
         //Func --> algoritm sort posts
         private IEnumerable<Post> FunctionBeutifulPost(IEnumerable<Post> enumarable)
@@ -118,6 +137,37 @@ namespace Blog.Controllers
             return enumarable;
         }
 
+        private async Task<IEnumerable<T>> GetElements<T>(IEnumerable<String> elementsId, IEnumerable<T> context) where T : class
+        {
+            return await Task.Run(() =>
+            {
+                if(elementsId == null)
+                    return null;
+            
+
+                var responceElements = new List<T>();
+
+                T element = null;
+                foreach (var strId in elementsId)
+                {
+                    element = context.FirstOrDefault(t => (string)(t.GetType().GetProperty("Id").GetValue(t)) == strId);
+                    if (element != null)
+                    {
+                        responceElements.Add(element);
+                    }
+
+                    element = null;
+                }
+
+                return responceElements.Count == 0 ? null : responceElements;
+
+            });
+        }
+
+        public IEnumerable<string> SplitField(string field, string separator)
+        {
+            return field?.Split(separator) ?? null;
+        }
         #endregion
     }
 }

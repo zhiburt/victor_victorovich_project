@@ -104,7 +104,7 @@
                                             @if(item.Content.Contains("<img")){
                                                 string src = ProfileViewModel.FirstImgSrcHtml(item.Content);
                                                 
-                                                <img class="card-img-top" src="@src" style="max-height:30rem;" alt="Card image cap">
+                                                <img class="card-img-top" src="@src" style="max-height:30rem;" alt="Thumbnail [200x250]">
                                             }
                                         <div class=" card-header">
                                             <a asp-action="Index" asp-controller="Post" asp-route-postId="@item.Id"><p>@item.Title</p></a>
@@ -118,15 +118,16 @@
                                                 <div class=" col col-3 text-left">
                                                     <p>Likes <i>2</i></p>
                                                 </div>
-                                                <div class=" col col-3">
-                                                    <p><small><i>spaces</i></small></p>
+                                                <div class=" col col-3 text-right">
+                                                    <p>Likes <i>6</i></p>
                                                 </div>
                                                 <div class=" col col-3 text-right">
                                                     <p>Reposts <i>0</i></p>
                                                 </div>
-                                                <div class=" col col-3 text-right">
-                                                    <p>a Something <i>6</i></p>
+                                                <div class=" col col-3">
+                                                    <p class="card-text"><small class="text-muted"><i>@item.Date</i></small></p>                                                                                                                                        
                                                 </div>
+                                                
 
                                             </div>
                                         </div>
@@ -135,27 +136,34 @@
                             else{
                                 <div class="card shadow-sm post-sm">
                                         <div class=" card-header">
-                                            <a href="#"><p>@item.Title</p></a>
+                                            <a href="#" class="post-title"><p>@item.Title</p></a>
                                         </div>
                                         <div class="card-body">
                                             <h5 class="card-title">@Html.Raw(@item.Content)</h5>
-                                            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
                                         </div>
                                         <div class=" card-footer">
                                             <div class="row text-black-50">
                                                 <div class=" col col-3 text-left">
-                                                    <p>Likes <i>2</i></p>
+                                                    <div class="row">
+                                                        <div class="col col-6 text-center">
+                                                            <a class="text-dark-50 like" href="#"><i class="fa fa-thumbs-up fa-2x"></i></a>
+                                                        </div>
+                                                        <div class="col col-6 text-center">
+                                                            <a class="text-dark-50 dislike" href="#"><i class="fa fa-thumbs-down fa-2x"></i></a>                                                            
+                                                        </div>
+                                                    </div>
                                                 </div>
-                                                <div class=" col col-3">
-                                                    <p><small><i>spaces</i></small></p>
+                                                <div class=" col col-3 text-right">
+                                                    <p>Likes <i>6</i></p>
                                                 </div>
                                                 <div class=" col col-3 text-right">
                                                     <p>Reposts <i>0</i></p>
                                                 </div>
-                                                <div class=" col col-3 text-right">
-                                                    <p>a Something <i>6</i></p>
+                                                
+                                                <div class=" col col-3">
+                                                    <p class="card-text"><small class="text-muted"><i>@item.Date</i></small></p>                                                                                        
+                                                    
                                                 </div>
-
                                             </div>
                                         </div>
                                     </div>
@@ -163,115 +171,16 @@
                         }
                     }
                 }
-
-                <div class="card shadow-sm post-sm">
-                    <div class=" card-header">
-                        <a asp-action="Index" asp-controller="Post"><p>It's a card without img</p></a>
-                    </div>
-                    <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-                    </div>
-                    <div class=" card-footer">
-                        <div class="row text-black-50">
-                            <div class=" col col-3 text-left">
-                                <p>Likes <i>2</i></p>
-                            </div>
-                            <div class=" col col-3">
-                                <p><small><i>spaces</i></small></p>
-                            </div>
-                            <div class=" col col-3 text-right">
-                                <p>Reposts <i>0</i></p>
-                            </div>
-                            <div class=" col col-3 text-right">
-                                <p>a Something <i>6</i></p>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="card mb-3 shadow-sm post-sm">
-                    <img class="card-img-top" src="~/images/test/2.jpg" style="max-height:30rem;" alt="Card image cap">
-                    <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-                    </div>
-                    <div class=" card-footer">
-                        <div class="row text-black-50">
-                            <div class=" col col-3 text-left">
-                                <p>Likes <i>2</i></p>
-                            </div>
-                            <div class=" col col-3">
-                                <p><small><i>spaces</i></small></p>
-                            </div>
-                            <div class=" col col-3 text-right">
-                                <p>Reposts <i>0</i></p>
-                            </div>
-                            <div class=" col col-3 text-right">
-                                <p>a Something <i>6</i></p>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-                <div class="card mb-3 shadow-sm post-sm">
-                    <div class=" card-header">
-                        <p>It's a card without img</p>
-                    </div>
-                    <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-                    </div>
-                    <div class=" card-footer">
-                        <div class="row text-black-50">
-                            <div class=" col col-3 text-left">
-                                <p>Likes <i>2</i></p>
-                            </div>
-                            <div class=" col col-3">
-                                <p><small><i>spaces</i></small></p>
-                            </div>
-                            <div class=" col col-3 text-right">
-                                <p>Reposts <i>0</i></p>
-                            </div>
-                            <div class=" col col-3 text-right">
-                                <p>a Something <i>6</i></p>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-                <div class="card mb-3 shadow-sm post-sm">
-                    <div class=" card-header">
-                        <p>It's a card without img</p>
-                    </div>
-                    <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-                    </div>
-                    <div class=" card-footer">
-                        <div class="row text-black-50">
-                            <div class=" col col-3 text-left">
-                                <p>Likes <i>2</i></p>
-                            </div>
-                            <div class=" col col-3">
-                                <p><small><i>spaces</i></small></p>
-                            </div>
-                            <div class=" col col-3 text-right">
-                                <p>Reposts <i>0</i></p>
-                            </div>
-                            <div class=" col col-3 text-right">
-                                <p>a Something <i>6</i></p>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
     </div>
 </div>
+
+          <!-- COSTIL !!!!-->
+          <!-- NEED USE REGULAR EXPRESSION IN URL! -->
+<p id="postCreatorId"><em>@Model.User.Id</em></p>
+
+@section Scripts
+{
+  <script src="~/js/profile.js"></script>
+}
