@@ -27,7 +27,7 @@ namespace Blog
         }
 
         public IConfiguration Configuration { get; }
-
+        public static IServiceProvider __serviceProvider;
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
@@ -96,7 +96,10 @@ namespace Blog
                 });
 
             
+
             services.AddSignalR();
+            //COSTIL!!!
+            __serviceProvider = services.BuildServiceProvider();
         }
 
         private void ConfigureDb(IServiceCollection services)
@@ -175,6 +178,7 @@ namespace Blog
             {
                 routes.MapHub<ChatHub>("/chathub");
             });
+            
         }
     }
 }

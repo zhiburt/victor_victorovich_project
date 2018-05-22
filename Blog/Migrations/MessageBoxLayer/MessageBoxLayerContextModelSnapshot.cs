@@ -20,7 +20,7 @@ namespace Blog.Migrations.MessageBoxLayer
 
             modelBuilder.Entity("Blog.Models.DbModels.MessagesBoxLayer", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<string>("Id")
                         .ValueGeneratedOnAdd();
 
                     b.Property<string>("MessageBoxesId");

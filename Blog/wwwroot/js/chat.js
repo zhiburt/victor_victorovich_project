@@ -34,11 +34,37 @@ connection.on("ReceiveMessage", (user, message) => {
     document.getElementById("chat-body").appendChild(div);
 });
 
+connection.on("Joined", (user) => { 
+    const encodedMsg = user;
+    var div = document.createElement('div');
+    div.className = "";
+    div.innerHTML = '\
+        <div class="answer left">\
+        <div class="avatar">\
+        <img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="User name">\
+        <div class="status offline"></div>\
+        </div>\
+        <div class="name">'+(user)+'</div>\
+        <div class="text">'+
+        user + 'joined'
+        '</div>\
+        <div class="time">5 min ago</div>\
+    </div>';
+    document.getElementById("chat-body").appendChild(div);
+});
+
 document.getElementById("sendButton").addEventListener("click", event => {
     const user = document.getElementById("userInput").value;
     const message = document.getElementById("messageInput").value;    
-    connection.invoke("SendMessage", user, message).catch(err => console.error(err.toString()));
+    connection.invoke("SendMessage", message).catch(err => console.error(err.toString()));
     event.preventDefault();
 });
+
+document.getElementById("joinButton").addEventListener("click", event => {
+    const roomName = document.getElementById("roomNameInput").value;    
+    connection.invoke("JoinRoom", roomName).catch(err => console.error(err.toString()));
+    event.preventDefault();
+});
+
 
 connection.start().catch(err => console.error(err.toString()));

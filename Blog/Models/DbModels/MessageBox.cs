@@ -14,6 +14,7 @@ namespace Blog.Models.DbModels
     {
         [Key]
         public int Id { get; set; }
+        public string Name { get; set; }
         public string CreatorId { get; set; }
         public string OtherUsersId { get; set; }
         public string MessagesId { get; set; }

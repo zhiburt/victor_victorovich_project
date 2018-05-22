@@ -8,7 +8,7 @@ namespace Blog.Models.DbModels
 {    public class MessagesBoxLayer
     {
         [Key]
-        public int Id { get; set; }
+        public string Id { get; set; }
         public string MessageBoxesId { get; set; }
     }
 }

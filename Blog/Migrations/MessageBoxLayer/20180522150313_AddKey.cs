@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace Blog.Migrations.MessageBoxLayer
 {
-    public partial class Init : Migration
+    public partial class AddKey : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -12,8 +12,7 @@ namespace Blog.Migrations.MessageBoxLayer
                 name: "Comments",
                 columns: table => new
                 {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
+                    Id = table.Column<string>(nullable: false),
                     MessageBoxesId = table.Column<string>(nullable: true)
                 },
                 constraints: table =>

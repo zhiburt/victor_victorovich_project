@@ -12,9 +12,10 @@ using System;
 namespace Blog.Migrations.MessageBox
 {
     [DbContext(typeof(MessageBoxContext))]
-    partial class MessageBoxContextModelSnapshot : ModelSnapshot
+    [Migration("20180522140244_Name")]
+    partial class Name
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

@@ -10,8 +10,8 @@ using System;
 namespace Blog.Migrations.MessageBoxLayer
 {
     [DbContext(typeof(MessageBoxLayerContext))]
-    [Migration("20180517123814_Init")]
-    partial class Init
+    [Migration("20180522150313_AddKey")]
+    partial class AddKey
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -21,7 +21,7 @@ namespace Blog.Migrations.MessageBoxLayer
 
             modelBuilder.Entity("Blog.Models.DbModels.MessagesBoxLayer", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<string>("Id")
                         .ValueGeneratedOnAdd();
 
                     b.Property<string>("MessageBoxesId");
